@@ -1,0 +1,22 @@
+###########################################
+# Syntax Coloring Map
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+gbj_exponential_filter	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+init	KEYWORD2
+getValue	KEYWORD2
+getFactor	KEYWORD2
+setFactor	KEYWORD2
+
+###########################################
+# Constants (LITERAL1)
+###########################################
+GBJ_EXPONENTIAL_FILTER_VERSION	LITERAL1
+GBJ_EXPONENTIAL_FILTER_FACTOR_DEF	LITERAL1

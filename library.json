@@ -1,0 +1,12 @@
+{
+  "name": "gbj_filter_exponential",
+  "keywords": "filtering, exponential",
+  "description": "The library calculates a new filtered value from stored previous and currently measured one.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrkaleArduinoLib/gbj_filter_exponential.git"
+  },
+  "version": "1.0.0",
+  "frameworks": "arduino",
+  "platforms": ["atmelavr", "atmelsam", "espressif8266", "espressif32"]
+}
