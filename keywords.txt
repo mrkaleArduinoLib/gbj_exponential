@@ -18,5 +18,3 @@ setFactor	KEYWORD2
 ###########################################
 # Constants (LITERAL1)
 ###########################################
-GBJ_EXPONENTIAL_FILTER_VERSION	LITERAL1
-GBJ_EXPONENTIAL_FILTER_FACTOR_DEF	LITERAL1

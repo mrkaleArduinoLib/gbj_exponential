@@ -1,4 +1,5 @@
 #include "gbj_filter_exponential.h"
+const String gbj_filter_exponential::VERSION = "GBJ_FILTER_EXPONENTIAL 1.1.0";
 
 
 // Constructor
@@ -6,13 +7,6 @@ gbj_filter_exponential::gbj_filter_exponential(float smoothingFactor)
 {
   setFactor(smoothingFactor);
   init();
-}
-
-
-// Initialize all status variables
-void gbj_filter_exponential::init()
-{
-  _init = true;
 }
 
 
@@ -30,18 +24,3 @@ float gbj_filter_exponential::getValue(float value)
   }
   return _value;
 }
-
-
-//------------------------------------------------------------------------------
-// Setters
-//------------------------------------------------------------------------------
-void gbj_filter_exponential::setFactor(float smoothingFactor)
-{
-  _factor = constrain(fabs(smoothingFactor), 0.0, 1.0);
-}
-
-
-//------------------------------------------------------------------------------
-// Getters
-//------------------------------------------------------------------------------
-float gbj_filter_exponential::getFactor() { return _factor; };

@@ -63,8 +63,9 @@ Typical smoothing factors
 
 <a id="Constants"></a>
 ## Constants
-- **GBJ\_FILTER\_EXPONENTIAL\_VERSION**: Name and semantic version of the library
-- **GBJ\_FILTER\_EXPONENTIAL\_FACTOR\_DEF**: Default smoothing factor
+All constants are embedded into the class as static ones.
+
+- **gbj\_filter\_exponential::VERSION**: Name and semantic version of the library.
 
 
 <a id="interface"></a>
@@ -92,7 +93,7 @@ Constructor stores the smoothing factor within a class instance object.
 <a id="prm_smoothingFactor"></a>
 - **smoothingFactor**: Smoothing factor for exponential filtering.
   - *Valid values*: real number 0.0 to 1.0
-  - *Default value*: 0.5 for running average ([GBJ\_FILTER\_EXPONENTIAL\_FACTOR\_DEF](#constants))
+  - *Default value*: 0.5 for running average
 
 #### Returns
 Object performing the exponential filtering of data.
@@ -101,8 +102,8 @@ Object performing the exponential filtering of data.
 The constructor has the argument defaulted. The constructor instance without the parameter is equivalent to an instance with the argument set by corresponding constant with default value:
 
 ``` cpp
-gbj_filter_exponential Samples = gbj_filter_exponential(); // It is equivalent to
-gbj_filter_exponential Samples = gbj_filter_exponential(GBJ_FILTER_EXPONENTIAL_FACTOR_DEF);
+gbj_filter_exponential Filter = gbj_filter_exponential(); // It is equivalent to
+gbj_filter_exponential Filter = gbj_filter_exponential(0.5);
 ```
 
 #### See also
