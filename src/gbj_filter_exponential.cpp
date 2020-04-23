@@ -20,7 +20,7 @@ float gbj_filter_exponential::getValue(float value)
   }
   else
   {
-    _value += _factor * (value - _value);
+    _value += getFactor() * (value - _value);
   }
   return _value;
 }
