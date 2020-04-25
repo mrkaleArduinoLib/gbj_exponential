@@ -48,7 +48,7 @@ void loop()
   demoData = COEF_DEMO * (float)random(SENSOR_DATA_MAX + 1); // Measured data
   filterData = Filter.getValue(demoData);                    // Filtered data
   Serial.print(demoData, 1);
-  Serial.print("\t\t");
+  Serial.print("\t");
   Serial.println(filterData, 1);
   delay(PERIOD_MEASURE);
 }
