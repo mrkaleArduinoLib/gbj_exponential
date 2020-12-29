@@ -31,9 +31,11 @@
     #include "WProgram.h"
   #endif
   #include <inttypes.h>
+#elif defined(ESP8266) || defined(ESP32)
+  #include <Arduino.h>
 #elif defined(PARTICLE)
-    #include "Particle.h"
-    #include "math.h"
+  #include "Particle.h"
+  #include "math.h"
 #endif
 
 
