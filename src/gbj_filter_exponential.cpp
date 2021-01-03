@@ -1,16 +1,6 @@
 #include "gbj_filter_exponential.h"
-const String gbj_filter_exponential::VERSION = "GBJ_FILTER_EXPONENTIAL 1.1.0";
+const String gbj_filter_exponential::VERSION = "GBJ_FILTER_EXPONENTIAL 1.2.0";
 
-
-// Constructor
-gbj_filter_exponential::gbj_filter_exponential(float smoothingFactor)
-{
-  setFactor(smoothingFactor);
-  init();
-}
-
-
-// Filtering
 float gbj_filter_exponential::getValue(float value)
 {
   if (_init)

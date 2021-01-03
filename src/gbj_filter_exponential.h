@@ -3,10 +3,10 @@
   gbj_filter_exponential
 
   DESCRIPTION:
-  The library smooths (filters) a data serie by exponential filtering.
+  The library smooths (filters) a data series by exponential filtering.
   - A new filtered value is calculated from stored previous one and
     a currently measured value.
-  - The serie of filtered values represents a serie of really measured
+  - The series of filtered values represents a series of really measured
     (usually measured and/or calculated) values with reduced digital noise.
 
   LICENSE:
@@ -56,14 +56,17 @@ class gbj_filter_exponential
 
       PARAMETERS:
       smoothingFactor - smoothing factor for exponential filtering.
-                        - Data type: float
-                        - Default value: 0.5
-                        - Limited range: 0.0 ~ 1.0
+        - Data type: float
+        - Default value: 0.5
+        - Limited range: 0.0 ~ 1.0
 
       RETURN:  object
     */
-    gbj_filter_exponential(float smoothingFactor = 0.5);
-
+    explicit gbj_filter_exponential(float smoothingFactor = 0.5)
+    {
+      setFactor(smoothingFactor);
+      init();
+    }
 
     /*
       Reset all status flags.
@@ -92,9 +95,9 @@ class gbj_filter_exponential
 
       PARAMETERS:
       value - measured value to be filtered.
-              - Data type: float
-              - Default value: none
-              - Limited range: rational numbers
+        - Data type: float
+        - Default value: none
+        - Limited range: rational numbers
 
       RETURN: Filtered value
     */

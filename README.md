@@ -1,8 +1,8 @@
 <a id="library"></a>
-# gbjFilterExponential
-The library smooths a data series by exponential filtering. It calculates a new filtered value from stored previous one and a currently observed value. The theory behind the exponential filter is well described by *Wikipedia* in the article [Exponential smoothing](https://en.wikipedia.org/wiki/Exponential_smoothing). The exponential filter is a weighted combination of the previous estimate (output) with the newest input data, with the sum of the weights equal to 1 so that the output matches the input at steady state.
+# gbj_filter_exponential
+The library smooths a data series by exponential filtering. It calculates a new filtered value from ones stored previously one and observed (measured) currently. The theory behind the exponential filter is well described by *Wikipedia* in the article [Exponential smoothing](https://en.wikipedia.org/wiki/Exponential_smoothing). The exponential filter is a weighted combination of the previous estimate (output) with the newest input data, with the sum of the weights equal to 1 so that the output matches the input at steady state.
 
-When the sequence of measurements begins at time **t = 0**, the simplest form of exponential smoothing is given by the formulas:
+When the sequence of measurements begins at time `t = 0`, the simplest form of exponential smoothing is given by the formulas:
 
 	S{0} = X{0}; t = 0
 	S{t} = a * X{t} + (1 - a) * S{t-1}; t > 0
@@ -12,9 +12,9 @@ where
 - **X{t}** is the measured (raw) value at some time point
 - **S{t}** is the smoothed (filtered) value for the same time point
 - **a** is the *smoothing factor* within the range (0, 1) excluding the extreme values, which have no practical sense.
-	- The *zero smoothing factor* causes, that all new measured values are ignored and the entire data serie is representing just with the initial value.
-	- The *smoothing factor 1* causes, that all previous filtered values are ignored and the entire data serie is representing with the measured values only and no filtering happens.
-	- In praxis the smoothing factor is chosen in the range *0.01 to 0.2*.
+	- The *zero smoothing factor* causes, that all new measured values are ignored and the entire data series is representing just with the initial value.
+	- The *smoothing factor 1* causes, that all previous filtered values are ignored and the entire data series is representing with the measured values only and no filtering happens.
+	- In praxis the smoothing factor is chosen within the range `0.01 ~ 0.2`.
 
 
 The above formula can be rewritten into the following predictor-corrector equivalent
@@ -23,7 +23,7 @@ The above formula can be rewritten into the following predictor-corrector equiva
 
 A new smoothed value is predicted as the previous one modified by a correction based on the difference between the new measured value and the previous smoothed value. This form is also the result of deriving the exponential filter formula.
 
-Smoothing factor can be calculated for particular sampling time interval between measurement and the *time constant* of the measured process from the formula
+Smoothing factor can be calculated for particular sampling time interval between measurement and the _time constant_ of the measured process from the formula
 
 	a = 1 - exp(-Ts/Tk)
 
@@ -61,16 +61,27 @@ Typical smoothing factors
 - **inttypes.h**: Integer type conversions. This header file includes the exact-width integer definitions and extends them with additional facilities provided by the implementation.
 
 
+<a id="tests"></a>
+## Unit testing
+
+The subfolder `tests` in the folder `extras`, i.e., `gbj_filter_exponential/extras/test`, contains testing files, usually just one, with unit tests of library [gbj_filter_exponential](#library) executable by [Unity](http://www.throwtheswitch.org/unity) test runner. Each testing file should be placed in an individual test folder of a particular project, usually in the structure `test/<testname>/<testfile>`.
+- **exponential_filter.cpp**: Test suite providing test cases for filtering calculation and all relevant public methods.
+
+
 <a id="Constants"></a>
 ## Constants
 All constants are embedded into the class as static ones.
 
-- **gbj\_filter\_exponential::VERSION**: Name and semantic version of the library.
+- **VERSION**: Name and semantic version of the library.
 
 
 <a id="interface"></a>
 ## Interface
-- [gbj_filter_exponential()](#gbj_filter_exponential)
+
+
+##### Main functions
+
+- [gbj_filter_exponential()](#constructor)
 - [init()](#init)
 - [getValue()](#getValue)
 
@@ -81,13 +92,14 @@ All constants are embedded into the class as static ones.
 - [getFactor()](#getFactor)
 
 
-<a id="gbj_filter_exponential"></a>
+<a id="constructor"></a>
 ## gbj_filter_exponential()
+
 #### Description
 Constructor stores the smoothing factor within a class instance object.
 
 #### Syntax
-    gbj_filter_exponential(float smoothingFactor);
+    gbj_filter_exponential(float smoothingFactor)
 
 #### Parameters
 <a id="prm_smoothingFactor"></a>
@@ -98,14 +110,6 @@ Constructor stores the smoothing factor within a class instance object.
 #### Returns
 Object performing the exponential filtering of data.
 
-#### Example
-The constructor has the argument defaulted. The constructor instance without the parameter is equivalent to an instance with the argument set by corresponding constant with default value:
-
-``` cpp
-gbj_filter_exponential Filter = gbj_filter_exponential(); // It is equivalent to
-gbj_filter_exponential Filter = gbj_filter_exponential(0.5);
-```
-
 #### See also
 [setFactor()](#setFactor)
 
@@ -114,8 +118,9 @@ gbj_filter_exponential Filter = gbj_filter_exponential(0.5);
 
 <a id="init"></a>
 ## init()
+
 #### Description
-The method initiates all internal status flags of a class instance object to default values as they are right after power up of a microcontroller. It cause that the next measured is not smoothed, because it is considered as starting value of a data series.
+The method initiates all internal status flags of a class instance object to default values as they are right after power up of a microcontroller. It cause that the next measured value is not smoothed, because it is considered as starting value of a data series.
 
 #### Syntax
 	void init();
@@ -131,12 +136,13 @@ None
 
 <a id="getValue"></a>
 ## getValue()
+
 #### Description
 The method calculates a new filtered value from the input value, previous stored filtered value, and stored smoothing factor in the class instance object.
-- Right after microcontroller power up or initiating the instance object by corresponding [method](#init) the very first input value is considered as a previous filtered value, or starting value.
+- Right after microcontroller power up or initiating the instance object the very first input value is considered as a previous filtered value, or starting value.
 
 #### Syntax
-    float getValue(float value);
+    float getValue(float value)
 
 #### Parameters
 <a id="prm_value"></a>
@@ -152,15 +158,16 @@ Filtered value.
 
 <a id="setFactor"></a>
 ## setFactor()
+
 #### Description
 The method enables changing the smoothing factor dynamically during the measuring (filtering) process.
 - Because the smoothing factor depends on the ratio of sampling time interval and time constant of a measured process, at changing some of them it might be useful to update the smoothing factor as well.
 
 #### Syntax
-    void setFactor(float smoothingFactor);
+    void setFactor(float smoothingFactor)
 
 #### Parameters
-- **smoothingFactor**: The same as the constructor argument [smoothingFactor](#prm_smoothingFactor)
+- **smoothingFactor**: The same as the [constructor](#constructor) argument [smoothingFactor](#prm_smoothingFactor).
 
 #### Returns
 None
@@ -168,18 +175,19 @@ None
 #### See also
 [getFactor()](#getFactor)
 
-[gbj_filter_exponential()](#gbj_filter_exponential)
+[gbj_filter_exponential()](#constructor)
 
 [Back to interface](#interface)
 
 
 <a id="getFactor"></a>
 ## getFactor()
+
 #### Description
 The method returns currently set smoothing factor for the exponential filtering.
 
 #### Syntax
-    float getFactor();
+    float getFactor()
 
 #### Parameters
 None
