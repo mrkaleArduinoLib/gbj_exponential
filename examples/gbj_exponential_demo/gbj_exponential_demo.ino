@@ -15,7 +15,7 @@
   CREDENTIALS:
   Author: Libor Gabaj
 */
-#include "gbj_filter_exponential.h"
+#include "gbj_exponential.h"
 
 #define SKETCH "GBJ_FILTER_EXPONENTIAL_DEMO 1.0.2"
 
@@ -30,14 +30,14 @@ const float COEF_DEMO = 100.0 / 1024.0;
 // Variables and constants for measurement
 const float COEF_FILTER_FACTOR = 0.2; // The smoothing factor for exponential filtering
 float demoData, filterData;
-gbj_filter_exponential filter = gbj_filter_exponential(COEF_FILTER_FACTOR);
+gbj_exponential filter = gbj_exponential(COEF_FILTER_FACTOR);
 
 void setup()
 {
   Serial.begin(9600);
   Serial.println(SKETCH);
   Serial.println("Libraries:");
-  Serial.println(gbj_filter_exponential::VERSION);
+  Serial.println(gbj_exponential::VERSION);
   Serial.println("---");
   Serial.print("Smoothing factor: ");
   Serial.println(filter.getFactor(), 4);

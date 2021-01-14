@@ -5,7 +5,7 @@
 ###########################################
 # Datatypes (KEYWORD1)
 ###########################################
-gbj_exponential_filter	KEYWORD1
+gbj_exponential	KEYWORD1
 
 ###########################################
 # Methods and Functions (KEYWORD2)
@@ -18,3 +18,4 @@ setFactor	KEYWORD2
 ###########################################
 # Constants (LITERAL1)
 ###########################################
+VERSION	LITERAL1

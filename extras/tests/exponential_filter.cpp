@@ -1,6 +1,6 @@
 /*
   NAME:
-  Unit tests of library "gbj_filter_exponential" for smoothing.
+  Unit tests of library "gbj_exponential" for smoothing.
 
   DESCRIPTION:
   The test suite provides test cases for calculating filtered value for two
@@ -15,7 +15,7 @@
   Author: Libor Gabaj
 */
 #include <Arduino.h>
-#include <gbj_filter_exponential.h>
+#include <gbj_exponential.h>
 #include <unity.h>
 
 float factor_ini = 0.2;
@@ -24,7 +24,7 @@ float value_ini = 150.0;
 float value_cur = 200.0;
 float value_new;
 
-gbj_filter_exponential filter = gbj_filter_exponential(0.2);
+gbj_exponential filter = gbj_exponential(0.2);
 
 void setup_test()
 {

@@ -1,5 +1,5 @@
 <a id="library"></a>
-# gbj_filter_exponential
+# gbj_exponential
 The library smooths a data series by exponential filtering. It calculates a new filtered value from ones stored previously one and observed (measured) currently. The theory behind the exponential filter is well described by *Wikipedia* in the article [Exponential smoothing](https://en.wikipedia.org/wiki/Exponential_smoothing). The exponential filter is a weighted combination of the previous estimate (output) with the newest input data, with the sum of the weights equal to 1 so that the output matches the input at steady state.
 
 When the sequence of measurements begins at time `t = 0`, the simplest form of exponential smoothing is given by the formulas:
@@ -64,7 +64,7 @@ Typical smoothing factors
 <a id="tests"></a>
 ## Unit testing
 
-The subfolder `tests` in the folder `extras`, i.e., `gbj_filter_exponential/extras/test`, contains testing files, usually just one, with unit tests of library [gbj_filter_exponential](#library) executable by [Unity](http://www.throwtheswitch.org/unity) test runner. Each testing file should be placed in an individual test folder of a particular project, usually in the structure `test/<testname>/<testfile>`.
+The subfolder `tests` in the folder `extras`, i.e., `gbj_exponential/extras/test`, contains testing files, usually just one, with unit tests of library [gbj_exponential](#library) executable by [Unity](http://www.throwtheswitch.org/unity) test runner. Each testing file should be placed in an individual test folder of a particular project, usually in the structure `test/<testname>/<testfile>`.
 - **exponential_filter.cpp**: Test suite providing test cases for filtering calculation and all relevant public methods.
 
 
@@ -81,7 +81,7 @@ All constants are embedded into the class as static ones.
 
 ##### Main functions
 
-- [gbj_filter_exponential()](#constructor)
+- [gbj_exponential()](#constructor)
 - [init()](#init)
 - [getValue()](#getValue)
 
@@ -93,13 +93,13 @@ All constants are embedded into the class as static ones.
 
 
 <a id="constructor"></a>
-## gbj_filter_exponential()
+## gbj_exponential()
 
 #### Description
 Constructor stores the smoothing factor within a class instance object.
 
 #### Syntax
-    gbj_filter_exponential(float smoothingFactor)
+    gbj_exponential(float smoothingFactor)
 
 #### Parameters
 <a id="prm_smoothingFactor"></a>
@@ -175,7 +175,7 @@ None
 #### See also
 [getFactor()](#getFactor)
 
-[gbj_filter_exponential()](#constructor)
+[gbj_exponential()](#constructor)
 
 [Back to interface](#interface)
 

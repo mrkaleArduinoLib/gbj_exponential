@@ -1,11 +1,11 @@
 {
-  "name": "gbj_filter_exponential",
+  "name": "gbj_exponential",
   "version": "1.2.0",
   "keywords": "data processing, filtering, exponential",
   "description": "Library for smoothing a data series with exponential filtering. The library calculates a new filtered value from ones stored previously and measured currently.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mrkaleArduinoLib/gbj_filter_exponential.git"
+    "url": "https://github.com/mrkaleArduinoLib/gbj_exponential.git"
   },
   "license": "MIT",
   "frameworks": "arduino",
