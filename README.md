@@ -9,12 +9,12 @@ When the sequence of measurements begins at time `t = 0`, the simplest form of e
 
 where
 
-- **X{t}** is the measured (raw) value at some time point
-- **S{t}** is the smoothed (filtered) value for the same time point
-- **a** is the *smoothing factor* within the range (0, 1) excluding the extreme values, which have no practical sense.
-	- The *zero smoothing factor* causes, that all new measured values are ignored and the entire data series is representing just with the initial value.
-	- The *smoothing factor 1* causes, that all previous filtered values are ignored and the entire data series is representing with the measured values only and no filtering happens.
-	- In praxis the smoothing factor is chosen within the range `0.01 ~ 0.2`.
+* **X{t}** is the measured (raw) value at some time point
+* **S{t}** is the smoothed (filtered) value for the same time point
+* **a** is the *smoothing factor* within the range (0, 1) excluding the extreme values, which have no practical sense.
+	* The *zero smoothing factor* causes, that all new measured values are ignored and the entire data series is representing just with the initial value.
+	* The *smoothing factor 1* causes, that all previous filtered values are ignored and the entire data series is representing with the measured values only and no filtering happens.
+	* In praxis the smoothing factor is chosen within the range `0.01 ~ 0.2`.
 
 
 The above formula can be rewritten into the following predictor-corrector equivalent
@@ -29,9 +29,9 @@ Smoothing factor can be calculated for particular sampling time interval between
 
 where
 
-- **Ts** is the sampling time interval
-- **Tk** is the time constant
-- **exp()** is the power of Euler number
+* **Ts** is the sampling time interval
+* **Tk** is the time constant
+* **exp()** is the power of Euler number
 
 
 If the sampling time is very short compared to the time constant, e.g., 5 times, we can calculate the approximate smoothing factor from the formula
@@ -41,38 +41,37 @@ If the sampling time is very short compared to the time constant, e.g., 5 times,
 
 Typical smoothing factors
 
-- **0.632**: The sampling time interval equal to the time constant
-- **0.5**: Regular running average
-- **0.2**: The sampling time interval ~4.5 times shorter than the time constant
-- **0.1**: The sampling time interval ~9.5 times shorter than the time constant
-- **0.01**: The sampling time interval ~100 times shorter than the time constant
+* **0.632**: The sampling time interval equal to the time constant
+* **0.5**: Regular running average
+* **0.2**: The sampling time interval ~4.5 times shorter than the time constant
+* **0.1**: The sampling time interval ~9.5 times shorter than the time constant
+* **0.01**: The sampling time interval ~100 times shorter than the time constant
 
 
 <a id="dependency"></a>
 ## Dependency
 
 #### Particle platform
-- **Particle.h**: Includes alternative (C++) data type definitions.
-- **math.h**: Includes standard C++ mathematics, needed for fabs().
+* **Particle.h**: Includes alternative (C++) data type definitions.
+* **math.h**: Includes standard C++ mathematics, needed for fabs().
 
 #### Arduino platform
-- **Arduino.h**: Main include file for the Arduino SDK version greater or equal to 100.
-- **WProgram.h**: Main include file for the Arduino SDK version less than 100.
-- **inttypes.h**: Integer type conversions. This header file includes the exact-width integer definitions and extends them with additional facilities provided by the implementation.
+* **Arduino.h**: Main include file for the Arduino SDK version greater or equal to 100.
+* **inttypes.h**: Integer type conversions. This header file includes the exact-width integer definitions and extends them with additional facilities provided by the implementation.
 
 
 <a id="tests"></a>
 ## Unit testing
 
 The subfolder `tests` in the folder `extras`, i.e., `gbj_exponential/extras/test`, contains testing files, usually just one, with unit tests of library [gbj_exponential](#library) executable by [Unity](http://www.throwtheswitch.org/unity) test runner. Each testing file should be placed in an individual test folder of a particular project, usually in the structure `test/<testname>/<testfile>`.
-- **exponential_filter.cpp**: Test suite providing test cases for filtering calculation and all relevant public methods.
+* **exponential_filter.cpp**: Test suite providing test cases for filtering calculation and all relevant public methods.
 
 
 <a id="Constants"></a>
 ## Constants
 All constants are embedded into the class as static ones.
 
-- **VERSION**: Name and semantic version of the library.
+* **VERSION**: Name and semantic version of the library.
 
 
 <a id="interface"></a>
@@ -81,15 +80,15 @@ All constants are embedded into the class as static ones.
 
 ##### Main functions
 
-- [gbj_exponential()](#constructor)
-- [init()](#init)
-- [getValue()](#getValue)
+* [gbj_exponential()](#constructor)
+* [init()](#init)
+* [getValue()](#getValue)
 
 #### Setters
-- [setFactor()](#setFactor)
+* [setFactor()](#setFactor)
 
 #### Getters
-- [getFactor()](#getFactor)
+* [getFactor()](#getFactor)
 
 
 <a id="constructor"></a>
@@ -103,9 +102,9 @@ Constructor stores the smoothing factor within a class instance object.
 
 #### Parameters
 <a id="prm_smoothingFactor"></a>
-- **smoothingFactor**: Smoothing factor for exponential filtering.
-  - *Valid values*: real number 0.0 to 1.0
-  - *Default value*: 0.5 for running average
+* **smoothingFactor**: Smoothing factor for exponential filtering.
+  * *Valid values*: real number 0.0 to 1.0
+  * *Default value*: 0.5 for running average
 
 #### Returns
 Object performing the exponential filtering of data.
@@ -139,16 +138,17 @@ None
 
 #### Description
 The method calculates a new filtered value from the input value, previous stored filtered value, and stored smoothing factor in the class instance object.
-- Right after microcontroller power up or initiating the instance object the very first input value is considered as a previous filtered value, or starting value.
+
+* Right after microcontroller power up or initiating the instance object the very first input value is considered as a previous filtered value, or starting value.
 
 #### Syntax
     float getValue(float value)
 
 #### Parameters
 <a id="prm_value"></a>
-- **value**: Measured value to be filtered.
-  - *Valid values*: float
-  - *Default value*: none
+* **value**: Measured value to be filtered.
+  * *Valid values*: float
+  * *Default value*: none
 
 #### Returns
 Filtered value.
@@ -161,13 +161,14 @@ Filtered value.
 
 #### Description
 The method enables changing the smoothing factor dynamically during the measuring (filtering) process.
-- Because the smoothing factor depends on the ratio of sampling time interval and time constant of a measured process, at changing some of them it might be useful to update the smoothing factor as well.
+
+* Because the smoothing factor depends on the ratio of sampling time interval and time constant of a measured process, at changing some of them it might be useful to update the smoothing factor as well.
 
 #### Syntax
     void setFactor(float smoothingFactor)
 
 #### Parameters
-- **smoothingFactor**: The same as the [constructor](#constructor) argument [smoothingFactor](#prm_smoothingFactor).
+* **smoothingFactor**: The same as the [constructor](#constructor) argument [smoothingFactor](#prm_smoothingFactor).
 
 #### Returns
 None
