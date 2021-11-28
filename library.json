@@ -1,6 +1,6 @@
 {
   "name": "gbj_exponential",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "keywords": "data processing, filtering, exponential",
   "description": "Library for smoothing a data series with exponential filtering. The library calculates a new filtered value from ones stored previously and measured currently.",
   "repository": {

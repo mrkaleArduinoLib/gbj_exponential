@@ -29,7 +29,9 @@
 #if defined(__AVR__)
   #include "Arduino.h"
   #include <inttypes.h>
-#elif defined(ESP8266) || defined(ESP32)
+#elif defined(ESP8266)
+  #include <Arduino.h>
+#elif defined(ESP32)
   #include <Arduino.h>
 #elif defined(PARTICLE)
   #include "Particle.h"
@@ -77,7 +79,7 @@ public:
 
     RETURN: none
   */
-  inline void init() { _init = true; };
+  inline void init() { init_ = true; };
 
   /*
     Calculate new filtered value from measured value.
@@ -102,14 +104,14 @@ public:
 
   inline void setFactor(float factor)
   {
-    _factor = constrain(fabs(factor), 0.0, 1.0);
+    factor_ = constrain(fabs(factor), 0.0, 1.0);
   };
-  inline float getFactor() { return _factor; };
+  inline float getFactor() { return factor_; };
 
 private:
-  float _factor; // Smoothing factor
-  float _value; // Recent filtered value
-  bool _init = true; // Flag about initial filtering
+  float factor_; // Smoothing factor
+  float value_; // Recent filtered value
+  bool init_ = true; // Flag about initial filtering
 };
 
 #endif

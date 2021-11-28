@@ -1,4 +1,5 @@
 <a id="library"></a>
+
 # gbj_exponential
 The library smooths a data series by exponential filtering. It calculates a new filtered value from ones stored previously one and observed (measured) currently. The theory behind the exponential filter is well described by *Wikipedia* in the article [Exponential smoothing](https://en.wikipedia.org/wiki/Exponential_smoothing). The exponential filter is a weighted combination of the previous estimate (output) with the newest input data, with the sum of the weights equal to 1 so that the output matches the input at steady state.
 
@@ -49,6 +50,7 @@ Typical smoothing factors
 
 
 <a id="dependency"></a>
+
 ## Dependency
 
 #### Particle platform
@@ -61,6 +63,7 @@ Typical smoothing factors
 
 
 <a id="tests"></a>
+
 ## Unit testing
 
 The subfolder `tests` in the folder `extras`, i.e., `gbj_exponential/extras/test`, contains testing files, usually just one, with unit tests of library [gbj_exponential](#library) executable by [Unity](http://www.throwtheswitch.org/unity) test runner. Each testing file should be placed in an individual test folder of a particular project, usually in the structure `test/<testname>/<testfile>`.
@@ -68,6 +71,7 @@ The subfolder `tests` in the folder `extras`, i.e., `gbj_exponential/extras/test
 
 
 <a id="Constants"></a>
+
 ## Constants
 All constants are embedded into the class as static ones.
 
@@ -75,6 +79,7 @@ All constants are embedded into the class as static ones.
 
 
 <a id="interface"></a>
+
 ## Interface
 
 
@@ -116,6 +121,7 @@ Object performing the exponential filtering of data.
 
 
 <a id="init"></a>
+
 ## init()
 
 #### Description
@@ -134,6 +140,7 @@ None
 
 
 <a id="getValue"></a>
+
 ## getValue()
 
 #### Description
@@ -157,6 +164,7 @@ Filtered value.
 
 
 <a id="setFactor"></a>
+
 ## setFactor()
 
 #### Description
@@ -182,6 +190,7 @@ None
 
 
 <a id="getFactor"></a>
+
 ## getFactor()
 
 #### Description

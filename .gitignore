@@ -1,3 +1,9 @@
+# Development environment
+.*.*
+.pio
+.vscode
+.clang-format
+
 # Compiled Object files
 *.slo
 *.lo
