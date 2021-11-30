@@ -1,5 +1,5 @@
 #include "gbj_exponential.h"
-const String gbj_exponential::VERSION = "GBJ_EXPONENTIAL 1.2.1";
+const String gbj_exponential::VERSION = "GBJ_EXPONENTIAL 1.3.0";
 
 float gbj_exponential::getValue(float value)
 {
@@ -10,7 +10,7 @@ float gbj_exponential::getValue(float value)
   }
   else
   {
-    value_ += getFactor() * (value - value_);
+    value_ += factor_ * (value - value_);
   }
   return value_;
 }

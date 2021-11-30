@@ -61,7 +61,7 @@ public:
 
     RETURN:  object
   */
-  explicit gbj_exponential(float smoothingFactor = 0.5)
+  inline gbj_exponential(float smoothingFactor = 0.5)
   {
     setFactor(smoothingFactor);
     init();
@@ -109,9 +109,9 @@ public:
   inline float getFactor() { return factor_; };
 
 private:
+  bool init_ = true; // Flag about initial filtering
   float factor_; // Smoothing factor
   float value_; // Recent filtered value
-  bool init_ = true; // Flag about initial filtering
 };
 
 #endif

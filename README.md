@@ -108,8 +108,8 @@ Constructor stores the smoothing factor within a class instance object.
 #### Parameters
 <a id="prm_smoothingFactor"></a>
 * **smoothingFactor**: Smoothing factor for exponential filtering.
-  * *Valid values*: real number 0.0 to 1.0
-  * *Default value*: 0.5 for running average
+  * *Valid values*: real number 0.0 ~ 1.0
+  * *Default value*: 0.5 (for running average)
 
 #### Returns
 Object performing the exponential filtering of data.
@@ -152,7 +152,6 @@ The method calculates a new filtered value from the input value, previous stored
     float getValue(float value)
 
 #### Parameters
-<a id="prm_value"></a>
 * **value**: Measured value to be filtered.
   * *Valid values*: float
   * *Default value*: none
