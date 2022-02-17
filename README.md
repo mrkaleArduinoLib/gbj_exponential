@@ -65,7 +65,6 @@ Typical smoothing factors
 <a id="tests"></a>
 
 ## Unit testing
-
 The subfolder `tests` in the folder `extras`, i.e., `gbj_exponential/extras/test`, contains testing files, usually just one, with unit tests of library [gbj_exponential](#library) executable by [Unity](http://www.throwtheswitch.org/unity) test runner. Each testing file should be placed in an individual test folder of a particular project, usually in the structure `test/<testname>/<testfile>`.
 * **exponential_filter.cpp**: Test suite providing test cases for filtering calculation and all relevant public methods.
 
@@ -84,7 +83,6 @@ All constants are embedded into the class as static ones.
 
 
 ##### Main functions
-
 * [gbj_exponential()](#constructor)
 * [init()](#init)
 * [getValue()](#getValue)
@@ -97,6 +95,7 @@ All constants are embedded into the class as static ones.
 
 
 <a id="constructor"></a>
+
 ## gbj_exponential()
 
 #### Description
@@ -144,12 +143,13 @@ None
 ## getValue()
 
 #### Description
-The method calculates a new filtered value from the input value, previous stored filtered value, and stored smoothing factor in the class instance object.
-
+The overloaded method either calculates a new filtered value from the input value, previous stored filtered value, and stored smoothing factor in the class instance object, or returns recently filtered value.
 * Right after microcontroller power up or initiating the instance object the very first input value is considered as a previous filtered value, or starting value.
+* The method without any input parameter returns recently filtered value.
 
 #### Syntax
     float getValue(float value)
+    float getValue()
 
 #### Parameters
 * **value**: Measured value to be filtered.

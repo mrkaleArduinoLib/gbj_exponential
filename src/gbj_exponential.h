@@ -44,17 +44,14 @@ public:
   static const String VERSION;
 
   /*
-    Constructor.
+    Constructor
 
     DESCRIPTION:
     Constructor stores the smoothing factor within a class instance object
     with initial internal status flags.
-    - The constructor has all arguments defaulted. If some argument after
-      some defaulted arguments should have a specific value, use corresponding
-      constants in place of those defaulted arguments.
 
     PARAMETERS:
-    smoothingFactor - smoothing factor for exponential filtering.
+    smoothingFactor - Smoothing factor for exponential filtering.
       - Data type: float
       - Default value: 0.5
       - Limited range: 0.0 ~ 1.0
@@ -68,7 +65,7 @@ public:
   }
 
   /*
-    Reset all status flags.
+    Reset all status flags
 
     DESCRIPTION:
     The method initiates all internal status flags of a class
@@ -82,25 +79,39 @@ public:
   inline void init() { init_ = true; };
 
   /*
-    Calculate new filtered value from measured value.
+    Calculate new filtered value from measured value or return recent one
 
     DESCRIPTION:
-    The method calculates a new filtered value from the input value,
+    The overloaded method calculates a new filtered value from the input value,
     previous stored filtered value, and stored smoothing factor in the class
     instance object.
     - Right after microcontroler power up or initiating the instance object
       by corresponding method the very first input value is considered as
       a previous filtered value, or starting value.
+    - The method without any input parameter returns recently filtered value.
 
     PARAMETERS:
-    value - measured value to be filtered.
-      - Data type: float
+    value - Measured value to be filtered.
+      - Data type: float, void
       - Default value: none
       - Limited range: rational numbers
 
     RETURN: Filtered value
   */
-  float getValue(float value);
+  inline float getValue(void) { return value_; }
+  inline float getValue(float value)
+  {
+    if (init_)
+    {
+      value_ = value;
+      init_ = false;
+    }
+    else
+    {
+      value_ += factor_ * (value - value_);
+    }
+    return value_;
+  }
 
   inline void setFactor(float factor)
   {
