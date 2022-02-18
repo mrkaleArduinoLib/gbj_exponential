@@ -76,7 +76,7 @@ public:
 
     RETURN: none
   */
-  inline void init() { init_ = true; };
+  inline void init() { flInit_ = true; };
 
   /*
     Calculate new filtered value from measured value or return recent one
@@ -101,10 +101,10 @@ public:
   inline float getValue(void) { return value_; }
   inline float getValue(float value)
   {
-    if (init_)
+    if (flInit_)
     {
       value_ = value;
-      init_ = false;
+      flInit_ = false;
     }
     else
     {
@@ -116,11 +116,11 @@ public:
   inline void setFactor(float factor)
   {
     factor_ = constrain(fabs(factor), 0.0, 1.0);
-  };
-  inline float getFactor() { return factor_; };
+  }
+  inline float getFactor() { return factor_; }
 
 private:
-  bool init_ = true; // Flag about initial filtering
+  bool flInit_; // Flag about initial filtering
   float factor_; // Smoothing factor
   float value_; // Recent filtered value
 };
