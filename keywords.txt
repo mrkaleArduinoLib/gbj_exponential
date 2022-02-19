@@ -5,11 +5,11 @@
 ###########################################
 # Datatypes (KEYWORD1)
 ###########################################
-gbj_exponential	KEYWORD1
 
 ###########################################
 # Methods and Functions (KEYWORD2)
 ###########################################
+gbj_exponential	KEYWORD2
 init	KEYWORD2
 getValue	KEYWORD2
 getFactor	KEYWORD2

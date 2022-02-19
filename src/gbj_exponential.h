@@ -76,7 +76,7 @@ public:
 
     RETURN: none
   */
-  inline void init() { flInit_ = true; };
+  inline void init(void) { flInit_ = true; };
 
   /*
     Calculate new filtered value from measured value or return recent one
