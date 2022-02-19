@@ -27,7 +27,7 @@
 #define GBJ_EXPONENTIAL_H
 
 #if defined(__AVR__)
-  #include "Arduino.h"
+  #include <Arduino.h>
   #include <inttypes.h>
 #elif defined(ESP8266)
   #include <Arduino.h>
@@ -122,7 +122,7 @@ public:
 private:
   bool flInit_; // Flag about initial filtering
   float factor_; // Smoothing factor
-  float value_; // Recent filtered value
+  float value_ = 0; // Recent filtered value; should be init due to hw repre 0.
 };
 
 #endif

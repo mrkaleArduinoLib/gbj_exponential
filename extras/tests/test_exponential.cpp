@@ -33,7 +33,7 @@ gbj_exponential smooth = gbj_exponential(FACTOR_INI);
 //******************************************************************************
 void test_init(void)
 {
-  // Mimic algorithm
+  // Algorithm
   valExpected = valExpectedOld = valInput;
   // Testee
   valActual = smooth.getValue(valInput);
@@ -42,7 +42,7 @@ void test_init(void)
 
 void test_smoothing(void)
 {
-  // Mimic algorithm
+  // Algorithm
   valExpected = FACTOR_INI * (valExpected - valExpectedOld) + valExpectedOld;
   valExpectedOld = valExpected;
   // Testee
@@ -58,7 +58,7 @@ void test_factor_new(void)
 
 void test_factor_change(void)
 {
-  // Mimic algorithm
+  // Algorithm
   valExpected = FACTOR_NEW * (valExpected - valExpectedOld) + valExpectedOld;
   valExpectedOld = valExpected;
   // Testee
