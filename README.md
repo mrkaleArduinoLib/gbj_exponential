@@ -1,10 +1,10 @@
 <a id="library"></a>
 
 # gbj_exponential
-The library statistically smooths a data serie by exponential filtering. It calculates a new filtered value from a filtered previously and provided (observed, measured) currently. The theory behind the exponential filter is well described by *Wikipedia* in the article [Exponential smoothing](https://en.wikipedia.org/wiki/Exponential_smoothing).
+The library statistically smooths a data serie by exponential filtering. It calculates a new smoothed value from one smoothed previously and provided currently, e.g., a sample from a sensor reading. The theory behind the exponential filter is well described by *Wikipedia* in the article [Exponential smoothing](https://en.wikipedia.org/wiki/Exponential_smoothing).
 
 * The exponential filter is a weighted combination of the previous estimate (output) with the newest input data, with the sum of the weights equal to 1, so that the output matches the input at steady state.
-* The library does not define a valid range of values to be filtered. That range and checking values against it should be provided externally.
+* The library does not define a valid range of values to be smoothed. That range and checking values against it should be provided externally.
 
 ## Fundamental functionality
 When the sequence of measurements begins at time `t = 0`, the simplest form of exponential smoothing is given by the formulas:
@@ -43,7 +43,6 @@ If the sampling time is very short compared to the time constant, e.g., 5 times,
 
 
 ## Typical smoothing factors
-
 * **0.632**: The sampling time interval equal to the time constant.
 * **0.5**: Regular running average.
 * **0.2**: The sampling time interval ~4.5 times shorter than the time constant.
@@ -55,13 +54,16 @@ If the sampling time is very short compared to the time constant, e.g., 5 times,
 
 ## Dependency
 
-#### Particle platform
-* **Particle.h**: Includes alternative (C++) data type definitions.
-* **math.h**: Includes standard C++ mathematics, needed for fabs().
-
 #### Arduino platform
 * **Arduino.h**: Main include file for the Arduino SDK version greater or equal to 100.
 * **inttypes.h**: Integer type conversions. This header file includes the exact-width integer definitions and extends them with additional facilities provided by the implementation.
+
+#### Espressif platform
+* **Arduino.h**: Main include file for the Arduino platform.
+
+#### Particle platform
+* **Particle.h**: Includes alternative (C++) data type definitions.
+* **math.h**: Includes standard C++ mathematics, needed for fabs().
 
 
 <a id="tests"></a>
@@ -119,7 +121,8 @@ Object performing the exponential filtering of data.
 ## init()
 
 #### Description
-The method initiates all internal status flags of a class instance object to default values as they are right after power up of a microcontroller. It cause that the next measured value is not smoothed, because it is considered as starting value of a data series.
+The method initiates all internal resources of a class instance object to default values as they are right after creating a library instance object.
+* It cause that the next measured value is not smoothed, because it is considered as starting value of a data serie.
 
 #### Syntax
 	void init()
@@ -138,21 +141,23 @@ None
 ## getValue()
 
 #### Description
-The overloaded method either calculates a new filtered value from the input value, previous stored filtered value, and stored smoothing factor in the class instance object, or returns recently filtered value.
-* Right after microcontroller power up or initiating the instance object the very first input value is considered as a previous filtered value, or starting value.
-* The method without any input parameter returns recently filtered value.
+The overloaded method either calculates a new smoothed value or returns recently smoothed one.
+* The calculation is executed from the input value, previous stored smoothed value, and stored smoothing factor in the class instance object.
+* Right after initiation either by creating the [instance object](#gbj_exponential) or calling the  method [init()](#init) the very first input value is considered as a previous smoothed value, or starting value.
+* The method without any input parameter returns recently smoothed value. It is useful if there is no variable used for the smoothed value in an application and the recent value is needed.
+* The method can be used as a "last good value" at external filtering against a valid range of values.
 
 #### Syntax
     float getValue(float value)
     float getValue()
 
 #### Parameters
-* **value**: Measured value to be filtered.
+* **value**: Value (sample) to be filtered.
   * *Valid values*: float
   * *Default value*: none
 
 #### Returns
-Currently or previously filtered value.
+Currently or recently smoothed value.
 
 [Back to interface](#interface)
 
@@ -162,7 +167,7 @@ Currently or previously filtered value.
 ## setFactor()
 
 #### Description
-The method enables changing the smoothing factor dynamically during the measuring (filtering) process.
+The method enables changing the smoothing factor dynamically during the smoothing process.
 * Because the smoothing factor depends on the ratio of sampling time interval and time constant of a measured process, at changing some of them it might be useful to update the smoothing factor as well.
 
 #### Syntax

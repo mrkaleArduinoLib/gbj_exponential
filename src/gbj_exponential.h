@@ -60,8 +60,8 @@ public:
   */
   inline gbj_exponential(float smoothingFactor = 0.5)
   {
-    setFactor(smoothingFactor);
     init();
+    setFactor(smoothingFactor);
   }
 
   /*
@@ -76,7 +76,11 @@ public:
 
     RETURN: none
   */
-  inline void init(void) { flInit_ = true; };
+  inline void init(void)
+  {
+    value_ = 0;
+    flInit_ = true;
+  };
 
   /*
     Calculate new filtered value from measured value or return recent one
@@ -115,14 +119,14 @@ public:
 
   inline void setFactor(float factor)
   {
-    factor_ = constrain(fabs(factor), 0.0, 1.0);
+    factor_ = constrain(factor, 0.0, 1.0);
   }
   inline float getFactor() { return factor_; }
 
 private:
   bool flInit_; // Flag about initial filtering
   float factor_; // Smoothing factor
-  float value_ = 0; // Recent filtered value; should be init due to hw repre 0.
+  float value_;
 };
 
 #endif

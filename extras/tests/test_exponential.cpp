@@ -52,17 +52,25 @@ void test_smoothing(void)
 
 void test_factor_new(void)
 {
+  valExpected = FACTOR_NEW;
   smooth.setFactor(FACTOR_NEW);
-  TEST_ASSERT_EQUAL_FLOAT(FACTOR_NEW, smooth.getFactor());
+  valActual = smooth.getFactor();
+  TEST_ASSERT_EQUAL_FLOAT(valExpected, valActual);
 }
 
-void test_factor_change(void)
+void test_factor_min(void)
 {
-  // Algorithm
-  valExpected = FACTOR_NEW * (valExpected - valExpectedOld) + valExpectedOld;
-  valExpectedOld = valExpected;
-  // Testee
-  valActual = smooth.getValue(valActual);
+  valExpected = 0.0;
+  smooth.setFactor(-2.3);
+  valActual = smooth.getFactor();
+  TEST_ASSERT_EQUAL_FLOAT(valExpected, valActual);
+}
+
+void test_factor_max(void)
+{
+  valExpected = 1.0;
+  smooth.setFactor(2.3);
+  valActual = smooth.getFactor();
   TEST_ASSERT_EQUAL_FLOAT(valExpected, valActual);
 }
 
@@ -77,7 +85,8 @@ void setup()
   RUN_TEST(test_init);
   RUN_TEST(test_smoothing);
   RUN_TEST(test_factor_new);
-  RUN_TEST(test_factor_change);
+  RUN_TEST(test_factor_min);
+  RUN_TEST(test_factor_max);
 
   UNITY_END();
 }
