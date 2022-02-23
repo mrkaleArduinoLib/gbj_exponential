@@ -41,7 +41,7 @@
 class gbj_exponential
 {
 public:
-  const String VERSION = "GBJ_EXPONENTIAL 1.4.0";
+  const char *VERSION = "GBJ_EXPONENTIAL 1.4.0";
 
   /*
     Constructor
@@ -117,10 +117,7 @@ public:
     return value_;
   }
 
-  inline void setFactor(float factor)
-  {
-    factor_ = constrain(factor, 0.0, 1.0);
-  }
+  inline void setFactor(float factor) { factor_ = constrain(factor, 0.0, 1.0); }
   inline float getFactor() { return factor_; }
 
 private:
