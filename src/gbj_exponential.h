@@ -41,7 +41,7 @@
 class gbj_exponential
 {
 public:
-  static const String VERSION;
+  const String VERSION = "GBJ_EXPONENTIAL 1.4.0";
 
   /*
     Constructor
