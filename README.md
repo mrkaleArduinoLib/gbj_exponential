@@ -61,24 +61,12 @@ If the sampling time is very short compared to the time constant, e.g., 5 times,
 #### Espressif platform
 * **Arduino.h**: Main include file for the Arduino platform.
 
-#### Particle platform
-* **Particle.h**: Includes alternative (C++) data type definitions.
-* **math.h**: Includes standard C++ mathematics, needed for fabs().
-
 
 <a id="tests"></a>
 
 ## Unit testing
 The subfolder `tests` in the folder `extras`, i.e., `gbj_exponential/extras/test`, contains testing files, usually just one, with unit tests of library [gbj_exponential](#library) executable by [Unity](http://www.throwtheswitch.org/unity) test runner. Each testing file should be placed in an individual test folder of a particular project, usually in the structure `test/<testname>/<testfile>`.
 * **test_exponential.cpp**: Test file providing test cases for statistical smoothing calculation and all relevant public methods.
-
-
-<a id="Constants"></a>
-
-## Constants
-All constants are embedded into the class as static ones.
-
-* **VERSION**: Name and semantic version of the library.
 
 
 <a id="interface"></a>
