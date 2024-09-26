@@ -26,23 +26,14 @@
 #ifndef GBJ_EXPONENTIAL_H
 #define GBJ_EXPONENTIAL_H
 
+#include <Arduino.h>
 #if defined(__AVR__)
-  #include <Arduino.h>
   #include <inttypes.h>
-#elif defined(ESP8266)
-  #include <Arduino.h>
-#elif defined(ESP32)
-  #include <Arduino.h>
-#elif defined(PARTICLE)
-  #include "Particle.h"
-  #include "math.h"
 #endif
 
 class gbj_exponential
 {
 public:
-  const char *VERSION = "GBJ_EXPONENTIAL 1.4.0";
-
   /*
     Constructor
 
